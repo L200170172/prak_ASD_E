@@ -1,0 +1,111 @@
+class mhsTIF():
+    def __init__(self, nama, asal, saku, nim):
+        self.nama = nama
+        self.asal = asal
+        self.saku = saku
+        self.nim = nim
+
+c0 = mhsTIF('aaa','sukoharjo',240000, 'L172')
+c1 = mhsTIF('bbb','klaten', 260000, 'L173')
+c2 = mhsTIF('ccc','salatiga',280000, 'L177')
+c3 = mhsTIF('ddd','klaten',200000, 'L180')
+c4 = mhsTIF('eee','surakarta',200000, 'L019')
+c5 = mhsTIF('fff','salatiga',290000, 'L245')
+c6 = mhsTIF('ggg','sukoharjo',230000, 'L192')
+
+daftar = [c0,c1,c2,c3,c4,c5,c6]
+
+#NOMOR 1#
+
+def ceknim (d):
+    for i in d :
+        print (i.nim)
+
+def swap (a, p, q) :
+    tmp = a[p]
+    a[p] = a[q]
+    a[q] = tmp
+
+def urutnim(d):
+    n = len(d)
+    for i in range (n -1) :
+        for k in range (n-i-1) :
+            if d[k].nim > d[k+1].nim :
+                swap(d,k,k+1)
+
+print(ceknim(daftar))
+print(urutnim(daftar))
+
+#NOMOR2#
+
+a = [2,6,7,9,4]
+b = [5,8,10,3,1]
+c = a + b
+ 
+def swap (a, p, q) :
+    tmp = a[p]
+    a[p] = a[q]
+    a[q] = tmp
+
+def urut(d):
+    n = len (d)
+    for i in range (n -1) :
+        for k in range (n-i-1) :
+            if d[k] > d[k+1] :
+                swap(d,k,k+1)
+
+urut(c)
+print(c)
+
+#NOMOR3#
+
+from time import time as detak
+from random import shuffle as kocok
+def swap(A,p,q):
+    tmp = A[p]
+    A[p]= A[q]
+    A[q]= tmp
+
+def bubbleSort(A):
+    n = len(A)
+    for i in range(n-1):
+        for j in range(n-i-1):
+            if A[j] > A[j+1]:
+                swap(A,j,j+1)
+
+def selectionSort(A):
+    n = len(A)
+    for i in range(n-1):
+        indexKecil = cariPosisiYangTerkecil(A, i, n)
+        if indexKecil != i :
+            swap(A, i, indexKecil)
+
+def insertionSort(A):
+    n = len(A)
+    for i in range(1,n):
+        nilai = A[i]
+        pos = i
+        while pos > 0 and nilai < A[pos - 1]:
+            A[pos] = A[pos -1]
+            pos = pos -1
+        A[pos] = nilai
+        
+def cariPosisiYangTerkecil(A,darisini, sampaisini):
+    posisiYangTerkecil = darisini
+    for i in range (darisini+1, sampaisini):
+        if A[i] < A[posisiYangTerkecil]:
+            posisiYangTerkecil = i
+    return posisiYangTerkecil
+
+k = []
+for i in range(1, 6001):
+    k.append(i)
+kocok(k)
+u_bub = k[:]
+u_sel = k[:]
+u_ins = k[:]
+
+aw = detak(); bubbleSort(u_bub);ak=detak();print('bubble: %g detik' %(ak-aw));
+aw = detak(); selectionSort(u_sel);ak=detak();print('selection: %g detik' %(ak-aw));
+aw = detak(); insertionSort(u_ins);ak=detak();print('insertion: %g detik' %(ak-aw));
+                                   
